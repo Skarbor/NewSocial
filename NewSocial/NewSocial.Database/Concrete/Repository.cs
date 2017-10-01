@@ -2,7 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using NewSocial.Database.Abstract;
 using NewSocial.Database.Context;
-
+using NewSocial.Models.User;
+using NewSocial.Entities.Post;
 
 namespace NewSocial.Database.Concrete
 {
@@ -10,15 +11,18 @@ namespace NewSocial.Database.Concrete
     {
         private ApplicationDbContext _context;
 
-        public Repository(DbContextOptions<ApplicationDbContext> options) : this(new ApplicationDbContext(options))
-        {
-        }
-
         public Repository(ApplicationDbContext context)
         {
             if(context == null) throw  new ArgumentNullException(nameof(context));
 
             _context = context;
+        }
+
+        public void AddPost(UserEntity user, string text)
+        {
+            _context.Posts.Add(new PostEntity { User = user, Text = text, Date = DateTime.Now });
+
+            _context.SaveChanges();
         }
     }
 }

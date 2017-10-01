@@ -13,6 +13,8 @@ using NewSocial.Models.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using NewSocial.Database.Abstract;
+using NewSocial.Database.Concrete;
 
 namespace NewSocial.BasicApi
 {
@@ -36,6 +38,7 @@ namespace NewSocial.BasicApi
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddTransient<IRepository, Repository>();
 
             ConfigureCookies(services);
 
@@ -55,6 +58,7 @@ namespace NewSocial.BasicApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
 
             app.UseAuthentication();
             app.UseMvc();
