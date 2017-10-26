@@ -1,9 +1,10 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore;
 using NewSocial.Database.Abstract;
 using NewSocial.Database.Context;
 using NewSocial.Models.User;
 using NewSocial.Entities.Post;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace NewSocial.Database.Concrete
 {
@@ -23,6 +24,11 @@ namespace NewSocial.Database.Concrete
             _context.Posts.Add(new PostEntity { User = user, Text = text, Date = DateTime.Now });
 
             _context.SaveChanges();
+        }
+
+        public IEnumerable<PostEntity> GetAllPosts()
+        {
+            return _context.Posts.Include(post => post.User);
         }
     }
 }

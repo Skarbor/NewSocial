@@ -3,8 +3,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NewSocial.Database.Abstract;
 using NewSocial.Database.Concrete;
+using NewSocial.Entities.Post;
 using NewSocial.Models.User;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace NewSocial.Api.Controllers
@@ -37,6 +40,22 @@ namespace NewSocial.Api.Controllers
             }
 
             return Ok();
+        }
+
+        [HttpGet("GetAll")]
+        public IActionResult GetAll()
+        {
+            IEnumerable<PostEntity> allPosts;
+            try
+            {
+                allPosts = _repository.GetAllPosts();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+
+            return Ok(allPosts);      
         }
     }
 }
