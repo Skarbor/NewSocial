@@ -1,0 +1,34 @@
+<div class="posts">
+    <div class="post-with-comments" *ngFor="let post of getAll()">
+        <div class="post">
+            <div class="content">
+                <div class="author">
+                    <span>
+                        <a href="#">Adam Wójcik</a> 
+                    </span>
+                </div>
+                <div class="time">
+                    <span>{{post.Date | date:'medium'}}</span>
+                </div>          
+                <div class="text">
+                    <span>{{post.Text}} </span>
+                </div>
+            </div>
+            <div class="post-actions">
+                <div class="like">
+                    <img [src]=likeItImagePath>
+                    <a href="#">Lubię to!</a>
+                </div>
+            </div>
+        </div>
+        <div class="comments">
+          asdasd <br>
+          asdasd
+          <div class="user-comment">
+              <auto-resized-textarea></auto-resized-textarea>
+                <!-- <textarea id="txa1" onchange="textareaChanged()" rows="2"></textarea> -->
+          </div>
+        </div>
+    </div>
+</div>
+
