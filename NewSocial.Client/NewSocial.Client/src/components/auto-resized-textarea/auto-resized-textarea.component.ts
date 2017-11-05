@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 
 @Component({
   selector: 'auto-resized-textarea',
@@ -6,9 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./auto-resized-textarea.component.css']
 })
 export class AutoResizedTextareaComponent {
-    text : string = "";
-    rows : number = 1;
-    constructor() {
+  placeholder : string = "Napisz komentarz...";
+  rows : number = 1;
 
+  constructor(private zone:NgZone) {}
+
+  onKey(event: Event) { 
+      this.handleHeight(event.srcElement as HTMLTextAreaElement);
     }
+  
+
+  handleHeight(textarea: HTMLTextAreaElement) {
+    if(textarea.clientHeight < textarea.scrollHeight) {
+      this.rows++;
+    }
+  }
 }

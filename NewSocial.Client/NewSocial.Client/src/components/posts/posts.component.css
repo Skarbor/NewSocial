@@ -32,5 +32,24 @@
 }
 
 .posts .comments {
+    padding: 15px; 
     border-top : 1px solid rgb(221, 223, 226);
+    background: rgb(246, 247, 249);
+}
+
+.posts .comments .comment {
+    height: 30px;
+    widows: 30px;
+    margin-bottom : 7px;
+}
+
+.user-comment {
+    padding: 5px;
+}
+
+.user-picture img {
+    height: 30px;
+    widows: 30px;
+    float: left;
+    margin-right: 7px;
 }

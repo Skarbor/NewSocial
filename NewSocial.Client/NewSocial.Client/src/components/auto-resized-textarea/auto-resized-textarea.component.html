@@ -1,1 +1,1 @@
-<textarea rows="{{rows}}">{{text}}</textarea>
+<textarea placeholder="{{placeholder}}" [(rows)]="rows" (keyup)="onKey($event)"></textarea>

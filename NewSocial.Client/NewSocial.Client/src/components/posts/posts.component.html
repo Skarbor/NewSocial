@@ -1,5 +1,5 @@
 <div class="posts">
-    <div class="post-with-comments" *ngFor="let post of getAll()">
+    <div class="post-with-comments" *ngFor="let post of posts">
         <div class="post">
             <div class="content">
                 <div class="author">
@@ -22,11 +22,24 @@
             </div>
         </div>
         <div class="comments">
-          asdasd <br>
-          asdasd
-          <div class="user-comment">
-              <auto-resized-textarea></auto-resized-textarea>
-                <!-- <textarea id="txa1" onchange="textareaChanged()" rows="2"></textarea> -->
+          <div class="new-comment">
+              <div class="user-picture">
+                  <img [src]="userPicture">
+              </div>
+              <div class="comment-text">
+                    <auto-resized-textarea></auto-resized-textarea>
+              </div>
+          </div>
+
+          <div *ngFor="let comment of post.Comments">
+                <div class="comment">
+                    <div class="user-picture">
+                        <img [src]="userPicture">
+                    </div>
+                    <div class="comment-text">
+                        {{comment.Text}}
+                    </div>
+                </div>
           </div>
         </div>
     </div>

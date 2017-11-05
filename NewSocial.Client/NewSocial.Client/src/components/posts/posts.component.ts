@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PostsService } from './../../services/postsService';
 import { Post } from './../../models/post';
 
@@ -7,13 +7,20 @@ import { Post } from './../../models/post';
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
-export class PostsComponent {
+export class PostsComponent implements OnInit {
   likeItImagePath : string = "/assets/like_it.jpg";
+  userPicture : string ="/assets/user_picture.jpg";
+  posts : Array<Post>;
 
-  _postsService = new PostsService();
-  
+  constructor(private postsService: PostsService) {}
+
+  ngOnInit(): void {
+    this.posts = this.getAll();
+  }
+
   getAll() : Array<Post>
   {
-    return this._postsService.getAllPosts();
+    var allPosts = this.postsService.getAllPosts();
+    return this.postsService.getAllPosts();
   }
 }
