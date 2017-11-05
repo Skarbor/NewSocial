@@ -5,7 +5,7 @@ import { Post } from './../../models/post';
 @Component({
   selector: 'posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css']
+  styleUrls: ['./posts.component.less']
 })
 export class PostsComponent implements OnInit {
   likeItImagePath : string = "/assets/like_it.jpg";
