@@ -7,6 +7,7 @@ import { AutoResizedTextareaComponent } from './../components/auto-resized-texta
 import { PostsService } from './../services/postsService';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticateService } from './../services/authneticateService';
+import { UrlService } from './../services/urlService';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,7 @@ import { AuthenticateService } from './../services/authneticateService';
     FormsModule,
     HttpClientModule
   ],
-  providers: [PostsService, AuthenticateService],
+  providers: [PostsService, AuthenticateService, UrlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
