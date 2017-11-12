@@ -1,45 +1,41 @@
-.posts {
+.post-with-comments {
     width: 600px;
+    background: white;
+    border: 2px solid rgb(221, 223, 226);
     margin: 10px;
 
-    .post-with-comments {
-        background: white;
-        border: 2px solid rgb(221, 223, 226);
-        margin: 10px;
+    .post {
+        padding: 15px; 
 
-        .post {
-            padding: 15px; 
+        .content {
+            border-bottom: 1px solid rgb(233, 235, 238);
+            padding-bottom: 10px;
 
-            .content {
-                border-bottom: 1px solid rgb(233, 235, 238);
-                padding-bottom: 10px;
-
-                .time {
-                    margin-bottom: 10px;
-                }
-            }
-
-            .post-actions {
-                .like {
-                    margin-top: 10px;
-                    
-                    img {
-                        width:20px;
-                        height: 20px;
-                    }
-                }
+            .time {
+                margin-bottom: 10px;
             }
         }
 
-        .comments {
-            padding: 15px; 
-            border-top : 1px solid rgb(221, 223, 226);
-            background: rgb(246, 247, 249);
-
-            .comment {
-                height: 30px;
-                margin-bottom : 7px;
+        .post-actions {
+            .like {
+                margin-top: 10px;
+                
+                img {
+                    width:20px;
+                    height: 20px;
+                }
             }
+        }
+    }
+
+    .comments {
+        padding: 15px; 
+        border-top : 1px solid rgb(221, 223, 226);
+        background: rgb(246, 247, 249);
+
+        .comment {
+            height: 30px;
+            margin-bottom : 7px;
         }
     }
 }

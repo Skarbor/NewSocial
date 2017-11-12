@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { PostsComponent } from './../components/posts/posts.component';
 import { AutoResizedTextareaComponent } from './../components/auto-resized-textarea/auto-resized-textarea.component';
 import { PostsService } from './../services/postsService';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthenticateService } from './../services/authneticateService';
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,9 +16,10 @@ import { PostsService } from './../services/postsService';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [PostsService],
+  providers: [PostsService, AuthenticateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

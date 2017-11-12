@@ -1,7 +1,7 @@
 import { User } from "./user";
 
 export class Comment {
-    constructor(public Id : number, public Text : string, public Author : User, public Date : number) {
+    constructor(public id : number, public text : string, public author : User, public date : number) {
         
     }
 }

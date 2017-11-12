@@ -1,47 +1,46 @@
-<div class="posts">
-    <div class="post-with-comments" *ngFor="let post of posts">
-        <div class="post">
-            <div class="content">
-                <div class="author">
-                    <span>
-                        <a href="#">Adam Wójcik</a> 
-                    </span>
-                </div>
-                <div class="time">
-                    <span>{{post.Date | date:'medium'}}</span>
-                </div>          
-                <div class="text">
-                    <span>{{post.Text}} </span>
-                </div>
+<div class="post-with-comments" *ngFor="let post of posts">
+    <div class="post">
+        <div class="content">
+            <div class="author">
+                <span>
+                    <a href="#">{{post.user.userName}}</a> 
+                </span>
             </div>
-            <div class="post-actions">
-                <div class="like">
-                    <img [src]=likeItImagePath>
-                    <a href="#">Lubię to!</a>
-                </div>
+            <div class="time">
+                <span>{{post.date | date:'medium'}}</span>
+            </div>          
+            <div class="text">
+                <span>{{post.text}} </span>
             </div>
         </div>
-        <div class="comments">
-            <div class="new-comment">
+        <div class="post-actions">
+            <div class="like">
+                <img [src]=likeItImagePath>
+                <a href="#">Lubię to!</a>
+            </div>
+        </div>
+    </div>
+    <div class="comments">
+        <div class="new-comment">
+            <div class="user-picture">
+                <img [src]="userPicture">
+            </div>
+            <div class="comment-text">
+                <auto-resized-textarea></auto-resized-textarea>
+            </div>
+        </div>
+
+        <div *ngFor="let comment of post.Comments">
+            <div class="comment">
                 <div class="user-picture">
                     <img [src]="userPicture">
                 </div>
                 <div class="comment-text">
-                    <auto-resized-textarea></auto-resized-textarea>
-                </div>
-            </div>
-
-            <div *ngFor="let comment of post.Comments">
-                <div class="comment">
-                    <div class="user-picture">
-                        <img [src]="userPicture">
-                    </div>
-                    <div class="comment-text">
-                        {{comment.Text}}
-                    </div>
+                    {{comment.text}}
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
