@@ -1,1 +1,1 @@
-<textarea placeholder="{{placeholder}}" [(rows)]="rows" (keyup)="onKey($event)"></textarea>
+<textarea #autoResizedTextarea placeholder="{{placeholder}}" [(rows)]="rows" (keyup)="onKey($event)" (keyup.enter)="onEnter(autoResizedTextarea.value)"></textarea>

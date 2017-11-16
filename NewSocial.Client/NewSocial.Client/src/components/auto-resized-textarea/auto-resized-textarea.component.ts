@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, Input } from '@angular/core';
 
 @Component({
   selector: 'auto-resized-textarea',
@@ -6,6 +6,8 @@ import { Component, NgZone } from '@angular/core';
   styleUrls: ['./auto-resized-textarea.component.css']
 })
 export class AutoResizedTextareaComponent {
+  @Input() enterHandler : Function;
+  
   placeholder : string = "Napisz komentarz...";
   rows : number = 1;
 
@@ -15,6 +17,9 @@ export class AutoResizedTextareaComponent {
       this.handleHeight(event.srcElement as HTMLTextAreaElement);
     }
   
+  onEnter(text : string) {
+    this.enterHandler(text);
+  }
 
   handleHeight(textarea: HTMLTextAreaElement) {
     if(textarea.clientHeight < textarea.scrollHeight) {

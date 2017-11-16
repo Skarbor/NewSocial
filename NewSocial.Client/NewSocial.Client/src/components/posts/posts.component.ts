@@ -24,4 +24,8 @@ export class PostsComponent implements OnInit {
       this.posts = posts;
     });
   }
+
+  onAddComment(commentText : string) {
+    alert("added a comment " + commentText);
+  }
 }
