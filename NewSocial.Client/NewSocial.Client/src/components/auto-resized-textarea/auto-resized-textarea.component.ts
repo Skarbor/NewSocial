@@ -1,4 +1,4 @@
-import { Component, NgZone, Input } from '@angular/core';
+import { Component, EventEmitter, NgZone, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'auto-resized-textarea',
@@ -6,19 +6,29 @@ import { Component, NgZone, Input } from '@angular/core';
   styleUrls: ['./auto-resized-textarea.component.css']
 })
 export class AutoResizedTextareaComponent {
-  @Input() enterHandler : Function;
-  
+  @Input() parentId : number;
+  @Output() enterHandler = new EventEmitter();
+
   placeholder : string = "Napisz komentarz...";
   rows : number = 1;
+  text : string = "";
 
-  constructor(private zone:NgZone) {}
+  constructor(private zone: NgZone) {}
 
   onKey(event: Event) { 
       this.handleHeight(event.srcElement as HTMLTextAreaElement);
     }
   
   onEnter(text : string) {
-    this.enterHandler(text);
+    let eventParams = {text : text, parentId : this.parentId};
+    this.enterHandler.emit(eventParams);
+
+    this.clearTextArea();
+  }
+
+  clearTextArea() {
+    this.text = "";
+    this.rows = 1;
   }
 
   handleHeight(textarea: HTMLTextAreaElement) {

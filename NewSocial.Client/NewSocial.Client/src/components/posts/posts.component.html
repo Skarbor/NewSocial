@@ -26,11 +26,11 @@
                 <img [src]="userPicture">
             </div>
             <div class="comment-text">
-                <auto-resized-textarea [enterHandler]="onAddComment"></auto-resized-textarea>
+                <auto-resized-textarea [parentId]="post.id" (enterHandler)="onAddComment($event)"></auto-resized-textarea>
             </div>
         </div>
 
-        <div *ngFor="let comment of post.Comments">
+        <div *ngFor="let comment of post.comments">
             <div class="comment">
                 <div class="user-picture">
                     <img [src]="userPicture">

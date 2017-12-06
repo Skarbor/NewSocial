@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from './../../services/postsService';
 import { Post } from './../../models/post';
+import { Comment } from './../../models/comment';
 
 @Component({
   selector: 'posts',
@@ -25,7 +26,14 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  onAddComment(commentText : string) {
-    alert("added a comment " + commentText);
+  onAddComment(eventParams : any) {
+    let comment = new Comment(1,eventParams.text, null, Date.now());
+
+    let post = this.posts.find(x=> x.id == eventParams.parentId);
+
+    if(!post.comments) {
+      post.comments = new Array<Comment>();
+    }
+    post.comments.push(comment);
   }
 }
