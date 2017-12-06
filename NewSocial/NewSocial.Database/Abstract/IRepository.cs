@@ -9,5 +9,9 @@ namespace NewSocial.Database.Abstract
         void AddPost(UserEntity user, string text);
 
         IEnumerable<PostEntity> GetAllPosts();
+
+        void AddComment(UserEntity user, int postId, string text);
+
+        IEnumerable<PostEntity> GetAllCommentsForPost(int postId);
     }
 }
