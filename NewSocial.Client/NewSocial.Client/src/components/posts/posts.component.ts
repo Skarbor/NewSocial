@@ -25,7 +25,7 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  onAddComment(commentText : string) {
+  onAddComment(postId: number, commentText : string) {
     alert("added a comment " + commentText);
   }
 }
