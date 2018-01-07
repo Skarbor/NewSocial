@@ -8,19 +8,19 @@ import { PostsService } from './../services/postsService';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticateService } from './../services/authneticateService';
 import { UrlService } from './../services/urlService';
+import { CommentsService } from './../services/commentsService';
 @NgModule({
   declarations: [
     AppComponent,
     AutoResizedTextareaComponent,
-    PostsComponent
-   
+    PostsComponent 
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule
   ],
-  providers: [PostsService, AuthenticateService, UrlService],
+  providers: [PostsService, CommentsService, AuthenticateService, UrlService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

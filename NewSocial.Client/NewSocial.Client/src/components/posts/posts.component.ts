@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from './../../services/postsService';
+import { CommentsService } from './../../services/commentsService';
 import { Post } from './../../models/post';
 import { Comment } from './../../models/comment';
 
@@ -12,22 +13,29 @@ export class PostsComponent implements OnInit {
   likeItImagePath : string = "/assets/like_it.jpg";
   userPicture : string ="/assets/user_picture.jpg";
   posts : Array<Post>;
-
-  constructor(private postsService: PostsService) {}
+  comments : Array<Comment>;
+  
+  constructor(private postsService: PostsService, private commentsService : CommentsService) {}
 
   ngOnInit(): void {
     this.getAll();
   }
 
-  getAll() 
-  {
+  getAll() {
     this.postsService.getAllPosts().subscribe(posts => {
       this.posts = posts;
+    });
+    this.getAllComments(1)
+  }
+
+  getAllComments(postId : number) {
+    return this.commentsService.getAllCommentsForPost(postId).subscribe(comments => {
+      this.comments = comments;
     });
   }
 
   onAddComment(eventParams : any) {
-    let comment = new Comment(1,eventParams.text, null, Date.now());
+    let comment = new Comment(1, eventParams.parentId, eventParams.text, null, Date.now());
 
     let post = this.posts.find(x=> x.id == eventParams.parentId);
 
@@ -35,5 +43,7 @@ export class PostsComponent implements OnInit {
       post.comments = new Array<Comment>();
     }
     post.comments.push(comment);
+    
+    this.commentsService.addComment(eventParams.parentId, eventParams.text);
   }
 }

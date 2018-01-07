@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NewSocial.Api.Models;
 using NewSocial.Database.Abstract;
 using NewSocial.Entities.Post;
 using NewSocial.Models.User;
@@ -25,13 +26,13 @@ namespace NewSocial.Api.Controllers
         }
 
         [HttpPut("Add")]
-        public async Task<IActionResult> Add(int postId, string text)
+        public async Task<IActionResult> Add([FromBody] AddCommentModel model)
         {
             try
             {
                 var currentUser = await _userManager.GetUserAsync(HttpContext.User);
 
-                _repository.AddComment(currentUser, postId, text);
+                _repository.AddComment(currentUser, model.PostId, model.Text);
             }
             catch (Exception ex)
             {
