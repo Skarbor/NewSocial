@@ -10,7 +10,6 @@ import { Comment } from './../../models/comment';
   styleUrls: ['./posts.component.less']
 })
 export class PostsComponent implements OnInit {
-  likeItImagePath : string = "/assets/like_it.jpg";
   userPicture : string ="/assets/user_picture.jpg";
   posts : Array<Post>;
   comments : Array<Comment>;

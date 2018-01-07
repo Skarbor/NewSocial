@@ -9,11 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthenticateService } from './../services/authneticateService';
 import { UrlService } from './../services/urlService';
 import { CommentsService } from './../services/commentsService';
+import { PostActionsComponent } from './../components/posts/post-actions/post-actions.component';
 @NgModule({
   declarations: [
     AppComponent,
     AutoResizedTextareaComponent,
-    PostsComponent 
+    PostsComponent,
+    PostActionsComponent
   ],
   imports: [
     BrowserModule,
