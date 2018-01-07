@@ -57,5 +57,21 @@ namespace NewSocial.Api.Controllers
 
             return Ok(allPosts);      
         }
+
+        [HttpPost("Like")]
+        public async Task<IActionResult> Like(int postId)
+        {
+            try
+            {
+                var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+                _repository.LikePost(postId, currentUser);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using NewSocial.Entities.Post;
+﻿using NewSocial.Entities;
+using NewSocial.Entities.Post;
 using NewSocial.Models.User;
 using System.Collections.Generic;
 
@@ -13,5 +14,7 @@ namespace NewSocial.Database.Abstract
         void AddComment(UserEntity user, int postId, string text);
 
         IEnumerable<PostEntity> GetAllCommentsForPost(int postId);
+
+        void LikePost(int postId, UserEntity user);
     }
 }

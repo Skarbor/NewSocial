@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using NewSocial.Entities;
 using NewSocial.Entities.Post;
 using NewSocial.Models.User;
 
@@ -18,5 +19,6 @@ namespace NewSocial.Database.Context
         }
 
         public virtual DbSet<PostEntity> Posts { get; set; }
+        public virtual DbSet<Like> Likes { get; set; }
     }
 }

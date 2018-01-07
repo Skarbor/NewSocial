@@ -6,6 +6,7 @@ using NewSocial.Entities.Post;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using NewSocial.Entities;
 
 namespace NewSocial.Database.Concrete
 {
@@ -42,6 +43,14 @@ namespace NewSocial.Database.Concrete
         public IEnumerable<PostEntity> GetAllPosts()
         {
             return _context.Posts.Where(post => post.ParentId == null).Include(post => post.User);
+        }
+
+        public void LikePost(int postId, UserEntity user)
+        {
+            var post = _context.Posts.Where(_post => _post.Id == postId).Include(_post => _post.Likes).Single();
+            post.Likes.Add(new Like() { Date = DateTime.Now, User = user });
+
+            _context.SaveChanges();
         }
     }
 }
