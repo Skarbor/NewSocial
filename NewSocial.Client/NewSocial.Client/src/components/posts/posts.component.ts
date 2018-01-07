@@ -24,13 +24,16 @@ export class PostsComponent implements OnInit {
   getAll() {
     this.postsService.getAllPosts().subscribe(posts => {
       this.posts = posts;
+
+      this.posts.forEach(post => {
+        this.getAllComments(post);
+      });
     });
-    this.getAllComments(1)
   }
 
-  getAllComments(postId : number) {
-    return this.commentsService.getAllCommentsForPost(postId).subscribe(comments => {
-      this.comments = comments;
+  getAllComments(post : Post) {
+    return this.commentsService.getAllCommentsForPost(post.id).subscribe(comments => {
+      post.comments = comments;
     });
   }
 

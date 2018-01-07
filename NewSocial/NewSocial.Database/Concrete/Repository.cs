@@ -41,7 +41,7 @@ namespace NewSocial.Database.Concrete
 
         public IEnumerable<PostEntity> GetAllPosts()
         {
-            return _context.Posts.Include(post => post.User);
+            return _context.Posts.Where(post => post.ParentId == null).Include(post => post.User);
         }
     }
 }

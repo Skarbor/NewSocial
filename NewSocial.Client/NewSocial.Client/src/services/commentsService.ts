@@ -21,6 +21,6 @@ export class CommentsService {
             let headers = new HttpHeaders();
             headers.append('Content-Type', 'application/json');
 
-            this.http.put(this.urlService.commentsAdd, {PostId: postId, Text: text}, {headers: headers}).toPromise().then(); //todo change this
+            this.http.put(this.urlService.commentsAdd, {PostId: postId, Text: text}, {headers: headers, responseType: 'text'}).toPromise().then(); //todo change this
         }
 }
