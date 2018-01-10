@@ -47,10 +47,21 @@ namespace NewSocial.Database.Concrete
 
         public void LikePost(int postId, UserEntity user)
         {
-            var post = _context.Posts.Where(_post => _post.Id == postId).Include(_post => _post.Likes).Single();
-            post.Likes.Add(new Like() { Date = DateTime.Now, User = user });
+            if (!DoesUserLikePost(postId, user))
+            {
+                var post = _context.Posts.Where(_post => _post.Id == postId).Include(_post => _post.Likes).Single();
+                post.Likes.Add(new Like() { Date = DateTime.Now, User = user });
 
-            _context.SaveChanges();
+                _context.SaveChanges();
+            }
+        }
+
+        public bool DoesUserLikePost(int postId, UserEntity user)
+        {
+            var post = _context.Posts.Where(_post => _post.Id == postId).Include(_post => _post.Likes).Single();
+
+            if (post.Likes.Where(like => like.User.Id == user.Id).SingleOrDefault() != null) return true;
+            return false;
         }
     }
 }

@@ -73,5 +73,19 @@ namespace NewSocial.Api.Controllers
 
             return Ok();
         }
+
+        [HttpGet("DoesUserLikePost")]
+        public async Task<IActionResult> DoesUserLikePost(int postId)
+        {
+            try
+            {
+                var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+                return Ok(_repository.DoesUserLikePost(postId, currentUser));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
     }
 }
