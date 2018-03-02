@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PostsService } from '../../../services/postsService';
 
 @Component({
@@ -7,6 +7,7 @@ import { PostsService } from '../../../services/postsService';
     styleUrls: ['./post-actions.component.less']
   })
   export class PostActionsComponent implements OnInit {
+    @Input() postId : number;
     likeItImagePath : string = "/assets/like_it.jpg";
     likeText : string;
     doesUserLikeIt : boolean;
@@ -14,7 +15,7 @@ import { PostsService } from '../../../services/postsService';
     constructor(private postsService: PostsService) {}
 
     ngOnInit(): void {
-      this.postsService.doesUserLikePost(2).subscribe(result => {
+      this.postsService.doesUserLikePost(this.postId).subscribe(result => {
         this.doesUserLikeIt = result;
         this.setLikeText();
       });    
@@ -30,6 +31,6 @@ import { PostsService } from '../../../services/postsService';
 
     like() {
       this.likeText = "Ty lubisz to!";
-      this.postsService.likePost(2);
+      this.postsService.likePost(this.postId);
     }
   }

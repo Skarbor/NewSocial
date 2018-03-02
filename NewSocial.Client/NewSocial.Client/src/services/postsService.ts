@@ -30,6 +30,6 @@ export class PostsService {
         let headers = new HttpHeaders();
         headers.append('Content-Type', 'application/json');
 
-        this.http.post(this.urlService.likePost + '?postId=' + postId, {headers: headers, responseType: 'text'}).toPromise().then(); //todo change this
+        this.http.post(this.urlService.likePost, postId, {headers: headers, responseType: 'text'}).toPromise().then(); //todo change this
     };
 }

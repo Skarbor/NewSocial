@@ -59,7 +59,7 @@ namespace NewSocial.Api.Controllers
         }
 
         [HttpPost("Like")]
-        public async Task<IActionResult> Like(int postId)
+        public async Task<IActionResult> Like([FromBody] int postId)
         {
             try
             {
